@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StudyFlow · Make your study count</title>
+<meta name="description" content="Plan, focus, record and share your study sessions.">
+<meta name="theme-color" content="#171A1F">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F5F3EE;--ink:#171A1F;--slate:#242A31;--flame:#FF6B35;--lime:#B9E769;--div:#E6E2D9;--mut:#6B6F76;--card:#FFFFFF;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121418;--ink:#F3F0E8;--div:#2C323A;--mut:#9AA0A8;--card:#1B1F25}}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+h1,h2,h3,.d{font-family:'Space Grotesk',Inter,sans-serif;margin:0;letter-spacing:-.02em}
+.n{font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--flame);outline-offset:2px}
+#app{display:flex;min-height:100%}
+aside{width:232px;border-right:1px solid var(--div);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.logo{font:700 22px 'Space Grotesk',sans-serif;padding:0 10px 18px}.logo i{color:var(--flame);font-style:normal}
+.nb{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;border:0;background:none;text-align:left;width:100%;color:var(--mut);font-weight:500}
+.nb:hover{background:var(--div);color:var(--ink)}.nb.on{color:var(--ink);background:var(--div)}.nb.on .ic{color:var(--flame)}
+.nb.f{background:var(--flame);color:#171A1F;font-weight:600;margin:6px 0}.nb.f:hover{filter:brightness(1.05)}
+
+.av{width:36px;height:36px;border-radius:50%;background:var(--slate);color:#F5F3EE;display:grid;place-items:center;font:600 13px 'Space Grotesk';flex:none}
+main{flex:1;min-width:0;max-width:1080px;margin:0 auto;padding:32px 28px 40px}
+.g{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:32px}
+h1{font-size:34px;line-height:1.1}h2{font-size:20px;margin-bottom:12px}.mut{color:var(--mut)}.sm{font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:22px 0;border-block:1px solid var(--div)}
+.st{padding:16px 0}.st b{display:block;font:700 34px 'Space Grotesk';letter-spacing:-.03em}
+.btn{background:var(--ink);color:var(--paper);border:0;border-radius:10px;padding:10px 16px;font-weight:600}
+.btn.p{background:var(--flame);color:#171A1F}.btn.o{background:none;color:var(--ink);border:1px solid var(--div)}.btn.s{padding:5px 10px;font-size:13px}
+.btn:hover{filter:brightness(1.08)}
+.card{background:var(--card);border:1px solid var(--div);border-radius:12px;padding:16px;margin-bottom:12px}
+.row{display:flex;gap:12px;align-items:center}.sp{justify-content:space-between}.wr{flex-wrap:wrap}
+.tag{font-size:12px;font-weight:500;padding:2px 8px;border-radius:6px;background:var(--div);display:inline-flex;gap:6px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.bar{height:8px;background:var(--div);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--lime)}
+.bars{display:flex;gap:8px;align-items:flex-end;height:140px}.bars div{flex:1;text-align:center;font-size:12px;color:var(--mut);display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bars i{display:block;background:var(--flame);border-radius:4px 4px 0 0;min-height:2px;margin-bottom:4px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--div);margin:18px 0}.tabs button{background:none;border:0;padding:8px 12px;color:var(--mut);border-bottom:2px solid transparent;font-weight:500}.tabs .on{color:var(--ink);border-color:var(--flame)}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid var(--div);border-radius:8px;background:var(--card);margin:4px 0 12px}
+label{font-size:13px;font-weight:500}
+.t{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--div)}.t:last-child{border:0}
+.ck{width:22px;height:22px;border-radius:6px;border:2px solid var(--mut);background:none;flex:none;margin-top:2px;color:#171A1F;font-size:13px;line-height:1}.ck.d{background:var(--lime);border-color:var(--lime)}
+.done .tt{text-decoration:line-through;color:var(--mut)}
+.focus{background:#171A1F;color:#F5F3EE;border-radius:16px;padding:40px 24px;min-height:70vh;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.focus input,.focus select,.focus textarea{background:#242A31;border-color:#3a424b;color:#F5F3EE}
+.focus .mut{color:#A9ADB3}.focus .btn.o{color:#F5F3EE;border-color:#3a424b}
+.big{font:700 clamp(72px,18vw,150px)/1 'Space Grotesk';letter-spacing:-.04em}
+.frm{width:100%;max-width:420px;text-align:left}
+.pre{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.pre button.on{background:var(--flame);color:#171A1F;border-color:var(--flame)}
+.recap{background:var(--slate);color:#F5F3EE;border-radius:14px;padding:22px;text-align:left;border-left:6px solid var(--flame)}
+.mod{position:fixed;inset:0;background:#0008;display:grid;place-items:center;z-index:50;padding:16px}.mod>div{background:var(--paper);border-radius:14px;padding:22px;width:100%;max-width:440px;max-height:90vh;overflow:auto}
+#toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;z-index:60;opacity:0;transition:.2s;pointer-events:none}#toast.on{opacity:1}
+nav.bn{display:none}
+.emp{border:1px dashed var(--div);border-radius:12px;padding:22px}
+@media(max-width:860px){
+aside{display:none}.g{grid-template-columns:1fr}main{padding:20px 16px 100px}h1{font-size:28px}
+.stats{grid-template-columns:repeat(2,1fr)}
+nav.bn{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--div);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:40;justify-content:space-around}
+nav.bn button{background:none;border:0;display:flex;flex-direction:column;align-items:center;font-size:11px;color:var(--mut);padding:6px;min-width:56px;min-height:44px}
+nav.bn .on{color:var(--ink)}nav.bn .on .ic{color:var(--flame)}
+nav.bn .f{background:var(--flame);color:#171A1F;border-radius:12px}}
+.auth{max-width:400px;margin:8vh auto;padding:0 20px}.auth code{background:var(--div);padding:1px 5px;border-radius:4px}.auth a,.emp a{color:var(--flame)}.mobile-only{display:none}@media(max-width:860px){.mobile-only{display:block}}
+</style></head><body>
+<div id="app"></div><div id="toast" role="status" aria-live="polite"></div><div id="modal"></div>
+<noscript>StudyFlow needs JavaScript.</noscript>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body></html>
